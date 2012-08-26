@@ -23,7 +23,9 @@ clear_tmp(File.dirname(__FILE__))
 #puts Sina::Client.new.authorize_url
 #puts QQ::Client.new.authorize_url
 #puts Wangyi::Client.new.authorize_url
-a= %W[a b c d e f]
-b= %W[b d e f g h i]
-puts (b-a).inspect
+a = b = Array.new
+a.push("hi")
+b.push("wo")
+puts a.inspect
+puts b.inspect
 

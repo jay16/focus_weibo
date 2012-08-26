@@ -1,3 +1,4 @@
+#encoding:utf-8
 require 'focus_config'
 
 #遍历引用focus_api文件夹下的.rb文件
@@ -14,20 +15,20 @@ if File.exists?('config/focus_weibo.yml')
     #否则微博相关的类无法正确生成
     #这里定义的类名也为以后调用微博类的名称
     w_array.push(key)
-  end  
+  end
   #以focus_api文件夹下的微博api文件夹为参考
   #只能生成已定义微博类范围的微博类
-  e_array = Focus::FocusApi.check_weibo_class(w_array)
+  w_array, n_array = Focus::FocusApi.check_weibo_class(w_array)
   #可能配置yml文件中定义的微博，在本gem中未定义
-  (w_array - e_array).each do |no_item|
+  n_array.each do |no_item|
     puts "#{no_item}微博api接口暂未实现^_^^_^^_^"
   end
   #根据微博名数组生成微博Weibo::Client主类
-  Focus::Modul.generate_weibo_client(e_array)
+  Focus::Modul.generate_weibo_client(w_array)
   #根据微博名数组生成微博Weibo::Config类
-  Focus::Modul.generate_config_module(e_array)
+  Focus::Modul.generate_config_module(w_array)
   #根据微博名数组使用Weibo::Config类读取配置参数信息
-  Focus::Modul.read_oauth_config(e_array,weibo_oauth)
+  Focus::Modul.read_oauth_config(w_array,weibo_oauth)
   
 else
   warn =  "\n\n=========================================================\n"

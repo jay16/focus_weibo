@@ -95,7 +95,7 @@ module Focus
         api_dir_array = String.new
         Dir.foreach(d_path) do |dir|
           next if dir == "." or dir == ".."
-          api_dir_array << dir
+          api_dir_array << dir + "-"
           f_path = File.join(File.dirname(__FILE__),require_dir,dir)
           #遍历api文件夹
           Dir.foreach(f_path) do |file|
@@ -112,7 +112,13 @@ module Focus
       end
       
       def check_weibo_class(c_array)
-        c_array.keep_if { |item| self.api_dir_array.include? item.downcase }
+        #c_array.keep_if { |item| self.api_dir_array.include? item.downcase }
+        w_array = Array.new
+        n_array = Array.new
+        c_array.each do |item|
+          @api_dir_array.include?(item.downcase) ? w_array.push(item) : n_array.push(item)
+        end
+        return w_array, n_array
       end
       
       #批量生产指定Weibo类内部使用的api引用
