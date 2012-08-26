@@ -1,0 +1,89 @@
+# WeiboFocus
+
+    interfaces for sina sina on oauth2
+
+## 注意事项
+
+      qq: params[:response_type] = 'token'
+    sina: params[:response_type] = 'code'
+
+
+    #批量生产api引用
+    api_methods = %w(users statuses comments friendships account favorites trends tags register search short_url common suggestions remind place notification location auth_code)
+    api_methods.each do |api|
+      define_method api do
+        klass = api.capitalize
+        eval("@#{api} ||= Sina::Api::#{klass}.new(@access_token) if @access_token")
+      end
+    end
+
+
+
+
+
+## Installation
+
+Add this line to your application's Gemfile:
+
+    gem 'sina_focus'
+
+And then execute:
+
+    $ bundle
+
+Or install it yourself as:
+
+    $ gem install sina_focus
+
+## Usage
+
+### config/sina_weibo.yml 在新浪应用设置授权回调地址与redirect_uri相同
+
+				development:
+						api_key: your-api-key
+						api_secret: your-api-secret
+						redirect_uri: "http://192.168.184.16:3000/home/callback"
+  
+### controller
+
+				def callback
+				client = Sina::Client.new
+				access_token = client.auth_code.get_token(params[:code].to_s)
+				session[:uid] = access_token.params["uid"]
+				session[:access_token] = access_token.token
+				session[:expires_at] = access_token.expires_at
+				if user_signed_in?
+				#把相关信息存入数据库
+					save_user_key(current_user.id,session[:access_token], session[:expires_at], session[:uid])
+				end
+				redirect_to "/home/index"
+				end
+
+				def connect
+				client = Sina::Client.new
+				redirect_to client.authorize_url
+				end
+
+### 方法调用
+
+				client = Sina::Client.new
+				client.接口名.方法名(参数详看新浪api)[http://open.sina.com/wiki/API%E6%96%87%E6%A1%A3_V2]
+				例如:获取当前登录用户及其所关注用户的最新微博 
+				@client.statuses.friends_timeline
+
+## Contributing
+
+1. Fork it
+2. Create your feature branch (`git checkout -b my-new-feature`)
+3. Commit your changes (`git commit -am 'Added some feature'`)
+4. Push to the branch (`git push origin my-new-feature`)
+5. Create new Pull Request
+
+## Error
+
+### OAuth2::Error (Sorry, that page doesn’t exist!)---without .json
+
+    error: get("tags/suggestions", :params => opt)
+  
+
+    ok: get("tags/suggestions.json", :params => opt)
