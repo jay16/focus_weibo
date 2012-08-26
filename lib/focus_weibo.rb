@@ -53,11 +53,4 @@ end
 #    api_key: 1713173982
 #    api_secret: 62170dacd0fa1c70d4eb1263a0855744
 #    redirect_uri: http://192.168.184.16:3000/sina_weibo/callback
-#  production:
-#    site: https://api.weibo.com/2/
-#    authorize_url: /oauth2/authorize
-#    token_url: /oauth2/access_token
-#    api_key: 1713173982
-#    api_secret: 62170dacd0fa1c70d4eb1263a0855744
-#    redirect_uri: http://192.168.184.16:3000/sina_weibo/callback
 #  ...
