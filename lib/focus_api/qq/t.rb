@@ -29,8 +29,7 @@ module QQ
      
      #发表一条带图片的微博 ps:syncflag 	微博同步到空间分享标记（可选，0-同步，1-不同步，默认为0）
      def add_pic(content,pic,opts={})
-        multipart = Base.build_multipart_bodies({"content" => content, "pic" => pic}.merge(opts))
-        hashie post("t/add_pic",{:headers => multipart[:headers],:body => multipart[:body]})
+        hashie post("t/add_pic",{:content => content, :pic => Faraday::UploadIO.new(pic, 'image/jpeg')}.merge(opts))
      end
      
 		   #转播数或点评数 

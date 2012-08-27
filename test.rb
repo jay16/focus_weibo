@@ -20,19 +20,10 @@ def clear_tmp(file_path)
 end
 clear_tmp(File.dirname(__FILE__))
 
-#puts Sina::Client.new.authorize_url
-#puts QQ::Client.new.authorize_url
-#puts Wangyi::Client.new.authorize_url
-url="access_token=a97b15eb32d82940c6ff8513311894fa&expires_in=604800&refresh_token=e768dd2c02e1de1a369a8ccc8ed31f0a&name=jay_16&nick=李俊杰"
-#json_body = JSON.parse(url)
- hash = Hash.new
- URI.decode_www_form(url).each do |item|
-   hash[item[0]] = item[1]
- end
- puts hash
- js = hash.to_json
- puts js.class
- j_b = JSON.parse(js)
- puts j_b.class
- puts j_b
-
+  		   opts = {:access_token => "a97b15eb32d82940c6ff8513311894fa",
+            :openid => "78231A433C5FFBBFF3B164C10FBA0F9A",
+            :clientip => "192.168.184.16"
+            }
+						@qq = QQ::Client.new
+						@qq.assign_params(opts)
+						@res = @qq.t.add_pic("qq api","P5010004.jpg")
