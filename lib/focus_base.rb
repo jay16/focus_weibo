@@ -59,13 +59,13 @@ module Weibo
       else
         #其他微博直接通过返回的code再次获取access_token信息
         param = open(uri).read
-        hash = Hash.new
+        json_body = Hash.new
         URI.decode_www_form(param).each do |item|
-          hash[item[0]] = item[1]
+          json_body[item[0]] = item[1]
         end
-        json_body = hash.to_json
       end
       expires_at = json_body["expires_in"].to_i + Time.now.to_i
+      puts json_body.class
       json_body.merge!({"expires_at" => expires_at})
 
       Hashie::Mash.new json_body
