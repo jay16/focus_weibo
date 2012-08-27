@@ -43,7 +43,7 @@ module QQ
       def post(path,opts={},params=@params)
         conn = Faraday.new(:url => 'https://open.t.qq.com')
         #如果上传图片，要另行设置
-        if opts.has_key?("pic")
+        if opts.has_key?(:pic)
           puts "image upload"
           conn = Faraday.new(:url => 'https://open.t.qq.com') do |f|  
             f.request :multipart  
@@ -55,11 +55,11 @@ module QQ
                        :oauth_consumer_key => "#{QQ::Config.api_key}",
                        :content_type => 'application/www-form-urlencoded',
                        :oauth_version => "2.a", 
-                       :scope => "all"})      
-        unless opts.empty?
-          params.merge!(opts)
-        end
-        conn.post('/api/'+path,opts)
+                       :scope => "all"})
+                          
+        params.merge!(opts) unless opts.empty?
+         
+        conn.post('/api/'+path,params)
       end
       
       protected
