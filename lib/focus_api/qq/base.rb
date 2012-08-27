@@ -37,7 +37,6 @@ module QQ
         
         uri.query = URI.encode_www_form(params)
         
-        puts uri.to_s
         Faraday.get(uri)
       end
       

@@ -23,9 +23,15 @@ clear_tmp(File.dirname(__FILE__))
 #puts Sina::Client.new.authorize_url
 #puts QQ::Client.new.authorize_url
 #puts Wangyi::Client.new.authorize_url
-a = b = Array.new
-a.push("hi")
-b.push("wo")
-puts a.inspect
-puts b.inspect
-
+#url="access_token=a97b15eb32d82940c6ff8513311894fa&expires_in=604800&refresh_token=e768dd2c02e1de1a369a8ccc8ed31f0a&name=jay_16&nick=李俊杰"
+##json_body = JSON.parse(url)
+# hash = Hash.new
+# URI.decode_www_form(url).each do |item|
+#   hash[item[0]] = item[1]
+# end
+# puts hash
+# puts hash.to_json
+a = "78231A433C5FFBBFF3B164C10FBA0F9A".to_i
+b = a.to_s
+puts a
+puts b
