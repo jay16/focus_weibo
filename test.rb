@@ -20,14 +20,14 @@ def clear_tmp(file_path)
 end
 clear_tmp(File.dirname(__FILE__))
 
-  		  opts = {
-  		  :access_token => "a97b15eb32d82940c6ff8513311894fa",
-            :openid => "78231A433C5FFBBFF3B164C10FBA0F9A",
-            :clientip => "192.168.184.16"
-            }
-						@qq = QQ::Client.new
-						@qq.assign_params(opts)
-						@qq.t.add("qq api P5010004.jpg")
-						@res = @qq.t.add_pic("qq api","P5010004.jpg")
+#  		  opts = {
+#  		  :access_token => "a97b15eb32d82940c6ff8513311894fa",
+#            :openid => "78231A433C5FFBBFF3B164C10FBA0F9A",
+#            :clientip => "192.168.184.16"
+#            }
+#						@qq = QQ::Client.new
+#						@qq.assign_params(opts)
+#						@res = @qq.t.add_pic("qq asfsapi h","P5010004.jpg")
+#						@res = @qq.t.add_pic("qq aasdfapi h","P5010004.jp2g")
 						
 						

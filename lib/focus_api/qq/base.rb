@@ -44,7 +44,6 @@ module QQ
         conn = Faraday.new(:url => 'https://open.t.qq.com')
         #如果上传图片，要另行设置
         if opts.has_key?(:pic)
-          puts "image upload"
           conn = Faraday.new(:url => 'https://open.t.qq.com') do |f|  
             f.request :multipart  
             f.adapter :net_http  

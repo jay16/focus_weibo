@@ -29,7 +29,13 @@ module QQ
      
      #发表一条带图片的微博 ps:syncflag 	微博同步到空间分享标记（可选，0-同步，1-不同步，默认为0）
      def add_pic(content,pic,opts={})
-        hashie post("t/add_pic",{:content => content, :pic => Faraday::UploadIO.new(pic, 'image/jpeg')}.merge(opts))
+        img_style = %W[jpg jpeg gif png ai pdg]
+        ext = File.extname(pic).downcase.gsub(".","")
+        if img_style.include?(ext)
+          hashie post("t/add_pic",{:content=>content,:pic=>Faraday::UploadIO.new(pic,"image/#{ext}")}.merge(opts))
+        else
+          hashie post("t/add",{:content => content + "----*_*---#{pic} is not image!"})
+        end
      end
      
 		   #转播数或点评数 
