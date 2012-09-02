@@ -48,7 +48,13 @@ module Focus
         modules.each do |mod|
           puts "#{mod}微博主类#{mod}::Client已生成..."
           #通过微博名的字符串获取微博类的类名
-          modul = Object.const_get(mod)
+          begin
+           #如果该微博类在内存中已存在
+           modul = Object.const_get(mod)
+          rescue NameError
+           #如果该微博类在内存中不存在
+           modul = Object.const_set(mod,Class.new)
+          end
           #生成Weibo::Client主类,通用的Weibo代码通过include引入
           modul.module_eval <<-RUBY
            class Client < OAuth2::Client
