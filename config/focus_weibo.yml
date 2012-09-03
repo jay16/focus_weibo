@@ -17,6 +17,15 @@ QQ:
     api_secret: 9d737f6ee0db81c754e1ad982d3b9df6
     redirect_uri: http://192.168.184.16:3000/qq_weibo/callback
 
+QqZone:
+  development:
+    site:  https://graph.qq.com/
+    authorize_url: /oauth2.0/authorize
+    token_url: /oauth2.0/token
+    api_key: 100652568
+    api_secret: 8843c0ffb5cac5a5f2f964edc8d8ec58
+    redirect_uri: http://192.168.184.16:3000/qq_zone/callback
+
 Wangyi:
   development:
     site: https://api.t.163.com/
@@ -26,7 +35,7 @@ Wangyi:
     api_secret: W21P8FWeHe3DzRUdsPVNDgKRoVc0RIFB
     redirect_uri: http://192.168.184.16:3000/wangyi_weibo/callback
 
-KaiXin:
+Kaixin:
   development:
     site: http://api.kaixin001.com/
     authorize_url: /oauth2/authorize
