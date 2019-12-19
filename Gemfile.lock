@@ -27,7 +27,7 @@ GEM
       jwt (~> 0.1.4)
       multi_json (~> 1.0)
       rack (~> 1.2)
-    rack (1.4.1)
+    rack (1.6.12)
     rest-client (1.6.7)
       mime-types (>= 1.16)
     rspec (2.11.0)
